@@ -1,7 +1,7 @@
 {
-  "name": "01-installing-and-configuring-typescript",
-  "private": true,
+  "name": "02-basic-types",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "type": "module",
   "main": "index.js",
