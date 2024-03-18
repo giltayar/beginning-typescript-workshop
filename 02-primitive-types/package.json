@@ -1,11 +1,12 @@
 {
-  "name": "02-basic-types",
+  "name": "02-primitive-types",
   "version": "1.0.0",
   "private": true,
   "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
