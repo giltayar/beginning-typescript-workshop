@@ -3,6 +3,7 @@
 const gil: {name: string; age: number} = {name: "Gil Tayar", age: 55};
 
 gil.age           // OK
+//@ts-expect-error
 gil.somethingElse // Error
 
 type Person = {
@@ -21,8 +22,10 @@ interface Teacher extends Person2 {
   subject: string;
 }
 
-const yishayahu: Teacher = {name: "Yishayahu Leibowitz", age: Infinity, subject: "Bible"};
+let gil2 = {name: "Gil Tayar", age: 55}
+let carmel2: Person = gil2;
 
+const yishayahu: Teacher = {name: "Yishayahu Leibowitz", age: Infinity, subject: "Bible"};
 
 // Subtyping and assignment
 

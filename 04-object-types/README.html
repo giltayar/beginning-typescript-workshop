@@ -16,8 +16,8 @@
   justify-content: start;
 }
 ;">
-<h1 id="basic-types">Basic types</h1>
-<p>This lesson discusses the basic types in TypeScript, and where to use types in general</p>
+<h1 id="object-types">Object types</h1>
+<p>This lesson describes object types</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-class="invert" data-theme="default" data-style="section {
   justify-content: start;
@@ -26,16 +26,21 @@
   justify-content: start;
 }
 ;">
-<h1 id="number-type">Number type</h1>
-<p>Define a variable with the <code>number</code> type:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">let</span> <span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">1</span>;
+<h1 id="defining-object-types">Defining object types</h1>
+<p>Define:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">gil</span>: {<span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>} = {<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Gil Tayar&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">55</span>};
+
+gil.<span class="hljs-property">age</span>           <span class="hljs-comment">// OK</span>
+
+gil.<span class="hljs-property">somethingElse</span> <span class="hljs-comment">// Error</span>
 </code></pre>
-<p>Use it:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts">n++; <span class="hljs-comment">// OK</span>
+<p>But better to use a type alias:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Person</span> = {
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
+};
 
-n - <span class="hljs-number">4</span>; <span class="hljs-comment">// OK</span>
-
-n - <span class="hljs-literal">true</span>; <span class="hljs-comment">// Error</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">carmel</span>: <span class="hljs-title class_">Person</span> = {<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Carmel Egger&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">40</span>};
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-class="invert" data-theme="default" data-style="section {
@@ -45,14 +50,20 @@ n - <span class="hljs-literal">true</span>; <span class="hljs-comment">// Error<
   justify-content: start;
 }
 ;">
-<h1 id="string-type">String type</h1>
-<p>Define a variable with the <code>string</code> type:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">s</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;hello&quot;</span>;
-</code></pre>
-<p>Use it:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts">s.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// OK</span>
+<h1 id="using-interfaces-instead-of-types">Using interfaces instead of types</h1>
+<p>Instead of <code>type</code>, you can use <code>interface</code>:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts">
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Person</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
+}
 
-s - <span class="hljs-number">5</span>; <span class="hljs-comment">// Error</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">carmel</span>: <span class="hljs-title class_">Person</span> = {<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Carmel Egger&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">40</span>};
+</code></pre>
+<p>No inference here:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">let</span> gil = {<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Gil Tayar&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">55</span>} <span class="hljs-comment">// Not a `Person`</span>
+
+<span class="hljs-keyword">let</span> <span class="hljs-attr">carmel</span>: <span class="hljs-title class_">Person</span> = gil; <span class="hljs-comment">// This works even if they don&#x27;t have the same &quot;interface&quot;</span>
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="invert" data-theme="default" data-style="section {
@@ -62,135 +73,17 @@ s - <span class="hljs-number">5</span>; <span class="hljs-comment">// Error</spa
   justify-content: start;
 }
 ;">
-<h1 id="boolean-type">Boolean type</h1>
-<p>Define a variable with the <code>boolean</code> type:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">b</span>: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">true</span>;
+<h1 id="extending-interfaces">Extending interfaces</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Teacher</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Person</span> {
+  <span class="hljs-attr">subject</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">yishayahu</span>: <span class="hljs-title class_">Teacher</span> = {<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Leibowitz&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-title class_">Infinity</span>, <span class="hljs-attr">subject</span>: <span class="hljs-string">&quot;Bible&quot;</span>};
 </code></pre>
-<p>Use it:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts">b &amp;&amp; !b; <span class="hljs-comment">// OK</span>
+<p>A <code>Teacher</code> is a <code>Person</code>, but a <code>Person</code> is not necessarily a <code>Teacher</code>:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">justAPerson</span>: <span class="hljs-title class_">Person</span> = yishayahu; <span class="hljs-comment">// OK - A teacher is a person</span>
 
-b - <span class="hljs-number">5</span>; <span class="hljs-comment">// Error</span>
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-class="invert" data-theme="default" data-style="section {
-  justify-content: start;
-}
-" lang="C" class="invert" style="--class:invert;--theme:default;--style:section {
-  justify-content: start;
-}
-;">
-<h1 id="any-type">Any type</h1>
-<p>The <code>any</code> type is an escape hatch: it will never error and accepts any<br />
-operation on it.</p>
-<p>Define a variable with the <code>any</code> type:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">a</span>: <span class="hljs-built_in">any</span> = <span class="hljs-literal">true</span>;
-</code></pre>
-<p>Use it:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts">a &amp;&amp; !a; <span class="hljs-comment">// OK</span>
-
-a - <span class="hljs-number">5</span>; <span class="hljs-comment">// OK</span>
-
-a.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// OK</span>
-
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-class="invert" data-theme="default" data-style="section {
-  justify-content: start;
-}
-" lang="C" class="invert" style="--class:invert;--theme:default;--style:section {
-  justify-content: start;
-}
-;">
-<h1 id="where-can-you-place-types-variable-definitions">Where can you place types? Variable definitions</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts">
-<span class="hljs-keyword">let</span> <span class="hljs-attr">a</span>: <span class="hljs-built_in">number</span>;
-
-<span class="hljs-keyword">let</span> <span class="hljs-attr">b</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">2</span>;
-
-<span class="hljs-keyword">const</span> <span class="hljs-attr">c</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">3</span>;
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-class="invert" data-theme="default" data-style="section {
-  justify-content: start;
-}
-" lang="C" class="invert" style="--class:invert;--theme:default;--style:section {
-  justify-content: start;
-}
-;">
-<h1 id="where-can-you-place-types-parameters">Where can you place types? Parameters</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) {
-  <span class="hljs-keyword">return</span> a + b;
-}
-</code></pre>
-<p>or...</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">plus1</span> = (<span class="hljs-params">a: <span class="hljs-built_in">number</span></span>) =&gt; a + <span class="hljs-number">1</span>
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-class="invert" data-theme="default" data-style="section {
-  justify-content: start;
-}
-" lang="C" class="invert" style="--class:invert;--theme:default;--style:section {
-  justify-content: start;
-}
-;">
-<h1 id="where-can-you-place-types-return-types">Where can you place types? Return types</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a, b</span>): <span class="hljs-built_in">number</span> {
-  <span class="hljs-keyword">return</span> a + b;
-}
-</code></pre>
-<p>or...</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> plus1 = (a): <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> a + <span class="hljs-number">1</span>
-</code></pre>
-<h2 id="combined">Combined</h2>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>): <span class="hljs-built_in">number</span> {
-  <span class="hljs-keyword">return</span> a + b;
-}
-
-<span class="hljs-keyword">const</span> plus1 = (a): <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> a + <span class="hljs-number">1</span>
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-class="invert" data-theme="default" data-style="section {
-  justify-content: start;
-}
-" lang="C" class="invert" style="--class:invert;--theme:default;--style:section {
-  justify-content: start;
-}
-;">
-<h1 id="where-can-you-place-types-class-properties">Where can you place types? Class properties</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-  <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
-
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;&#x27;</span>;
-     <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = <span class="hljs-number">0</span>;
-  }
-}
-</code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-class="invert" data-theme="default" data-style="section {
-  justify-content: start;
-}
-" lang="C" class="invert" style="--class:invert;--theme:default;--style:section {
-  justify-content: start;
-}
-;">
-<h1 id="type-inference">Type inference</h1>
-<p>Most of the times, you will only need to type paremeters and TypeScript<br />
-will &quot;guess&quot; the types of the other variables.</p>
-<p>Examples:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-ts"><span class="hljs-keyword">const</span> x = <span class="hljs-number">0</span>; <span class="hljs-comment">// No need to type</span>
-
-x + <span class="hljs-number">1</span>; <span class="hljs-comment">// OK</span>
-
-<span class="hljs-keyword">const</span> y = x * <span class="hljs-number">3</span>; <span class="hljs-comment">// No need to type</span>
-
-<span class="hljs-comment">// No need to type the return value</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a: <span class="hljs-built_in">number</span>, b: <span class="hljs-built_in">number</span></span>) {
-  <span class="hljs-keyword">return</span> a + b;
-}
-
-<span class="hljs-keyword">const</span> z = <span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// No need to type</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">anotherTeacher</span>: <span class="hljs-title class_">Teacher</span> = gil; <span class="hljs-comment">// Error - a person is not a Person</span>
 </code></pre>
 </section>
 <script>!function(){"use strict";const t={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},e="data-marp-auto-scaling-wrapper",i="data-marp-auto-scaling-svg",n="data-marp-auto-scaling-container";class s extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const t=t=>([e])=>{const{width:i,height:n}=e.contentRect;this[t]={width:i,height:n},this.updateSVGRect()};this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(t("containerSize")),this.wrapperObserver=new ResizeObserver(((...e)=>{t("wrapperSize")(...e),this.flushSvgDisplay()}))}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var t,s,o,r,a;this.shadowRoot.innerHTML=`\n<style>\n  svg[${i}] { display: block; width: 100%; height: auto; vertical-align: top; }\n  span[${n}] { display: table; white-space: var(--marp-auto-scaling-white-space, nowrap); width: max-content; }\n</style>\n<div ${e}>\n  <svg part="svg" ${i}>\n    <foreignObject><span ${n}><slot></slot></span></foreignObject>\n  </svg>\n</div>\n    `.split(/\n\s*/).join(""),this.wrapper=null!==(t=this.shadowRoot.querySelector(`div[${e}]`))&&void 0!==t?t:void 0;const l=this.svg;this.svg=null!==(o=null===(s=this.wrapper)||void 0===s?void 0:s.querySelector(`svg[${i}]`))&&void 0!==o?o:void 0,this.svg!==l&&(this.svgComputedStyle=this.svg?window.getComputedStyle(this.svg):void 0),this.container=null!==(a=null===(r=this.svg)||void 0===r?void 0:r.querySelector(`span[${n}]`))&&void 0!==a?a:void 0,this.observe()}disconnectedCallback(){this.svg=void 0,this.svgComputedStyle=void 0,this.wrapper=void 0,this.container=void 0,this.observe()}attributeChangedCallback(){this.observe()}flushSvgDisplay(){const{svg:t}=this;t&&(t.style.display="inline",requestAnimationFrame((()=>{t.style.display=""})))}observe(){this.containerObserver.disconnect(),this.wrapperObserver.disconnect(),this.wrapper&&this.wrapperObserver.observe(this.wrapper),this.container&&this.containerObserver.observe(this.container),this.svgComputedStyle&&this.observeSVGStyle(this.svgComputedStyle)}observeSVGStyle(t){const e=()=>{const i=(()=>{const e=t.getPropertyValue("--preserve-aspect-ratio");if(e)return e.trim();return`x${(({textAlign:t,direction:e})=>{if(t.endsWith("left"))return"Min";if(t.endsWith("right"))return"Max";if("start"===t||"end"===t){let i="rtl"===e;return"end"===t&&(i=!i),i?"Max":"Min"}return"Mid"})(t)}YMid meet`})();i!==this.svgPreserveAspectRatio&&(this.svgPreserveAspectRatio=i,this.updateSVGRect()),t===this.svgComputedStyle&&requestAnimationFrame(e)};e()}updateSVGRect(){var t,e,i,n,s,o,r;let a=Math.ceil(null!==(e=null===(t=this.containerSize)||void 0===t?void 0:t.width)&&void 0!==e?e:0);const l=Math.ceil(null!==(n=null===(i=this.containerSize)||void 0===i?void 0:i.height)&&void 0!==n?n:0);void 0!==this.dataset.downscaleOnly&&(a=Math.max(a,null!==(o=null===(s=this.wrapperSize)||void 0===s?void 0:s.width)&&void 0!==o?o:0));const c=null===(r=this.svg)||void 0===r?void 0:r.querySelector(":scope > foreignObject");if(null==c||c.setAttribute("width",`${a}`),null==c||c.setAttribute("height",`${l}`),this.svg&&(this.svg.setAttribute("viewBox",`0 0 ${a} ${l}`),this.svg.setAttribute("preserveAspectRatio",this.svgPreserveAspectRatio),this.svg.style.height=a<=0||l<=0?"0":""),this.container){const t=this.svgPreserveAspectRatio.toLowerCase();this.container.style.marginLeft=t.startsWith("xmid")||t.startsWith("xmax")?"auto":"0",this.container.style.marginRight=t.startsWith("xmi")?"auto":"0"}}}const o=(t,{attrs:e={},style:i})=>class extends t{constructor(...t){super(...t);for(const[t,i]of Object.entries(e))this.hasAttribute(t)||this.setAttribute(t,i);this.attachShadow({mode:"open"})}static get observedAttributes(){return["data-auto-scaling"]}connectedCallback(){this._update()}attributeChangedCallback(){this._update()}_update(){const t=i?`<style>:host { ${i} }</style>`:"";let e="<slot></slot>";const{autoScaling:n}=this.dataset;if(void 0!==n){e=`<marp-auto-scaling exportparts="svg:auto-scaling" ${"downscale-only"===n?"data-downscale-only":""}>${e}</marp-auto-scaling>`}this.shadowRoot.innerHTML=t+e}};let r;const a=Symbol();let l;const c="marpitSVGPolyfill:setZoomFactor,",d=Symbol(),g=Symbol();const h=()=>{const t="Apple Computer, Inc."===navigator.vendor,e=t?[u]:[],i={then:e=>(t?(async()=>{if(void 0===l){const t=document.createElement("canvas");t.width=10,t.height=10;const e=t.getContext("2d"),i=new Image(10,10),n=new Promise((t=>{i.addEventListener("load",(()=>t()))}));i.crossOrigin="anonymous",i.src="data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%201%201%22%3E%3CforeignObject%20width%3D%221%22%20height%3D%221%22%20requiredExtensions%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%3E%3Cdiv%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%22%20style%3D%22width%3A%201px%3B%20height%3A%201px%3B%20background%3A%20red%3B%20position%3A%20relative%22%3E%3C%2Fdiv%3E%3C%2FforeignObject%3E%3C%2Fsvg%3E",await n,e.drawImage(i,0,0),l=e.getImageData(5,5,1,1).data[3]<128}return l})().then((t=>{null==e||e(t?[u]:[])})):null==e||e([]),i)};return Object.assign(e,i)};let p,m;function u(t){const e="object"==typeof t&&t.target||document,i="object"==typeof t?t.zoom:t;window[g]||(Object.defineProperty(window,g,{configurable:!0,value:!0}),document.body.style.zoom=1.0001,document.body.offsetHeight,document.body.style.zoom=1,window.addEventListener("message",(({data:t,origin:e})=>{if(e===window.origin)try{if(t&&"string"==typeof t&&t.startsWith(c)){const[,e]=t.split(","),i=Number.parseFloat(e);Number.isNaN(i)||(m=i)}}catch(t){console.error(t)}})));let n=!1;Array.from(e.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,s,o,r;t.style.transform||(t.style.transform="translateZ(0)");const a=i||m||t.currentScale||1;p!==a&&(p=a,n=a);const l=t.getBoundingClientRect(),{length:c}=t.children;for(let i=0;i<c;i+=1){const n=t.children[i];if(n.getScreenCTM){const t=n.getScreenCTM();if(t){const i=null!==(s=null===(e=n.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==s?s:0,c=null!==(r=null===(o=n.y)||void 0===o?void 0:o.baseVal.value)&&void 0!==r?r:0,d=n.children.length;for(let e=0;e<d;e+=1){const s=n.children[e];if("SECTION"===s.tagName){const{style:e}=s;e.transformOrigin||(e.transformOrigin=`${-i}px ${-c}px`),e.transform=`scale(${a}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-l.left}, ${t.f-l.top}) translateZ(0.0001px)`;break}}}}}})),!1!==n&&Array.from(e.querySelectorAll("iframe"),(({contentWindow:t})=>{null==t||t.postMessage(`${c}${n}`,"null"===window.origin?"*":window.origin)}))}function v({once:t=!1,target:e=document}={}){const i=function(t=document){if(t[d])return t[d];let e=!0;const i=()=>{e=!1,delete t[d]};Object.defineProperty(t,d,{configurable:!0,value:i});let n=[],s=!1;(async()=>{try{n=await h()}finally{s=!0}})();const o=()=>{for(const e of n)e({target:t});s&&0===n.length||e&&window.requestAnimationFrame(o)};return o(),i}(e);return t?(i(),()=>{}):i}p=1,m=void 0;const b=Symbol(),w=(e=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(((e=document)=>{const i=window[a];i||customElements.define("marp-auto-scaling",s);for(const n of Object.keys(t)){const s=`marp-${n}`,a=t[n].proto();null!=r||(r=!!document.createElement("div",{is:"marp-auto-scaling"}).outerHTML.startsWith("<div is")),r&&a!==HTMLElement?i||customElements.define(s,o(a,{style:t[n].style}),{extends:n}):(i||customElements.define(s,o(HTMLElement,t[n])),e.querySelectorAll(`${n}[is="${s}"]`).forEach((t=>{t.outerHTML=t.outerHTML.replace(new RegExp(`^<${n}`,"i"),`<${s}`).replace(new RegExp(`</${n}>$`,"i"),`</${s}>`)})))}window[a]=!0})(e),e[b])return e[b];const i=v({target:e}),n=()=>{i(),delete e[b]},l=Object.assign(n,{cleanup:n,update:()=>w(e)});return Object.defineProperty(e,b,{configurable:!0,value:l}),l},y=document.currentScript;w(y?y.getRootNode():document)}();

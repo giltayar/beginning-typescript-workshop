@@ -7,7 +7,9 @@
   "scripts": {
     "build": "concurrently --raw \"npm run build-slides:*\"",
     "build-slides:01": "marp --html 01-*/README.md",
-    "build-slides:02": "marp --html 02-*/README.md"
+    "build-slides:02": "marp --html 02-*/README.md",
+    "build-slides:03": "marp --html 03-*/README.md",
+    "build-slides:04": "marp --html 04-*/README.md"
   },
   "keywords": [],
   "author": "",
