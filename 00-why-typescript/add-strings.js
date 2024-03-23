@@ -11,7 +11,9 @@ function addStrings(str1, str2) {
   for (let i = maxLength - 1; i >= 0; --i) {
     const digit1 = str1Padded[i] || "0";
     const digit2 = str2Padded[i] || "0";
-    let sum = Number(digit1) + Number(digit2) + carry;
+
+    // Bug: `digit1` and `digit2` are strings, and should be converted to numbers
+    let sum = digit1 + digit2 + carry;
 
     if (sum > 9) {
       sum -= 10;

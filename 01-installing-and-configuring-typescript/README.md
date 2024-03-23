@@ -13,6 +13,7 @@ $ npm install --save-dev typescript
 ```jsonc
 {
   "compilerOptions": {
+    "strict": true, // Show _all_ type errors
     "module": "ESNext", // inpput is ESM
     "moduleResolution": "Node", // you can find modules using the regular Node.js way (`node_modules` etc)
     "target": "ESNext", // output is JavaScript without transpilation to older version
@@ -41,3 +42,7 @@ writeFileSync('test.txt', 'Hello, world!');
 ```sh
 $ npx tsc
 ```
+
+## Add `npm run build/build:watch`
+
+And run `node --watch dist/...`

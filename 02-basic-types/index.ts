@@ -9,15 +9,17 @@ const a: any = 1;
 n - 4             // OK
 n - true          // Error
 
-b && !b            // OK
-
 s.split('')       // OK
+
 o.x               // Error!
+
+b && !b            // OK
 
 a.split('')       // OK
 a + 1             // OK
 
 // ###### Places Types Can Be Used
+
 // variables
 let n2: number;
 
@@ -30,4 +32,14 @@ function add(num1: number, num2: number): number {
 class Person {
   name: string;
   age: number;
+
+  constructor() {
+    this.name = '';
+     this.age = 0;
+  }
 }
+
+/// ##### Type Inference
+
+????
+
