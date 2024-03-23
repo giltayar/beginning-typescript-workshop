@@ -6,8 +6,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch"
+    "build": "tsc --watch"
   },
   "keywords": [],
   "author": "",
