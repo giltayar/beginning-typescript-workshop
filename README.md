@@ -1,1 +1,1 @@
-# beginning-typescript-workshop
+# "Beginning TypeScript" Workshop
