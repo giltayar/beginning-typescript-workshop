@@ -1,33 +1,73 @@
-// #### something or undefined
+---
+marp: true
+theme: default
+class:
+  - invert
+auto-scaling: true
+style: |
+  section {
+    justify-content: start;
+  }
+---
 
+# 05 Union types
+
+This lesson describes how to combine types using union (`|`)
+
+---
+
+# Using unions for "option" types
+
+Sometimes we need a variable to also be undefined, to signify "emptiness", but...:
+
+```ts
 let s: string;
 s = "something"; // OK
-//@ts-expect-error
-s = undefined; // Error
+s = undefined; // Error!
+```
 
-let su: string | undefined;
-su = "something"; // OK
-su = undefined; // OK
+To enable this, we use `|`
 
-// ### Smarts
+```ts
+let s: string | undefined;
+s = "something"; // OK
+s = undefined; // OK!
+```
 
+---
+
+# TypeScript is smart about union types
+
+It understands that `if` makes it safe:
+
+```ts
 function splitWordsOrElse(value: string | undefined): string[] {
   if (value !== undefined) {
-    return value.split(' ');
+    // here `value` is not `undefined`
+    return value.split(" ");
   } else {
-    //@ts-expect-error
-    return value.split(' '); // Error
+    // here `value` _is_ `undefined`
+    return value.split(" "); // Error
   }
 }
+```
 
-// ### ENUMS
+---
 
+# Enums
+
+Define:
+
+```ts
 let direction: "up" | "down" | "left" | "right";
 
 direction = "up"; // OK
-//@ts-expect-error
 direction = "west"; // Error
+```
 
+# Enums are usually type-aliased
+
+```ts
 type Direction = "up" | "down" | "left" | "right";
 type Location = { x: number; y: number };
 
@@ -47,9 +87,15 @@ function move(location: Location, direction: Direction) {
       break;
   }
 }
+```
 
-// ### Variant Object Types
+---
 
+# Variant types
+
+Defining:
+
+```ts
 type Command =
   | {
       kind: "move";
@@ -62,7 +108,13 @@ type Command =
       kind: "teleport";
       location: Location;
     };
+```
 
+---
+
+# Using variant types
+
+```ts
 function executeCommands(actor: Location, commands: Command[]) {
   for (const command of commands) {
     switch (command.kind) {
@@ -79,7 +131,13 @@ function executeCommands(actor: Location, commands: Command[]) {
     }
   }
 }
+```
 
+---
+
+# This is type-safe!
+
+```ts
 console.log(
   executeCommands({ x: 0, y: 0 }, [
     { kind: "move", direction: "up" },
@@ -90,3 +148,4 @@ console.log(
 );
 // { x: 0, y: 1 }
 // { x: 10, y: 10 }
+```
