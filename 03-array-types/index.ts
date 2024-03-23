@@ -46,3 +46,5 @@ function findNumber2(arr: NumberArray, num: number): boolean {
 }
 
 findNumber2(an, 2) // true
+
+const x = [1, '2', true]

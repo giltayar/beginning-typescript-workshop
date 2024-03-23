@@ -12,7 +12,7 @@ style: |
 
 # Basic types
 
-In this lesson, we discuss the basic types in TypeScript, and where to use types in general
+This lesson discusses the basic types in TypeScript, and where to use types in general
 
 ---
 
