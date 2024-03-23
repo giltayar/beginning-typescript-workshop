@@ -18,13 +18,15 @@ Let's show how to create a project that can run TypeScript files
 
 # Creating the project
 
+- Create `package.json`:
+
 ```sh
 $ npm init -y
 ```
 
 This creates a `package.json`
 
-Add a `"type": "module"` in the `package.json to say that it's an ESM package:
+- Add a `"type": "module"` in the `package.json` to say that it's an ESM package:
 
 ```json
 {
@@ -42,15 +44,15 @@ Add a `"type": "module"` in the `package.json to say that it's an ESM package:
 
 # Adding TypeScript
 
+- Add the TypeScript transpiler to the package dependencies:
+
 ```sh
 $ npm install --save-dev typescript
 ```
 
-This adds the TypeScript transpiler to the package dependencies
+- Add the `tsconfig.json`:
 
-Now add the `tsconfig.json`:
-
-```jsonc
+```json
 {
   "compilerOptions": {
     "strict": true, // Show _all_ type errors
@@ -104,7 +106,7 @@ This creates a file `dist/index.js` (`dist` because of the `outDir` option in `t
 # Running the transpiled code
 
 ```sh
-$ node dist/index.js`
+$ node dist/index.js
 ```
 
 Yay!
