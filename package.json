@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "build": "concurrently --raw \"npm run build-slides:*\"",
-    "build-slides:01": "marp --html 01-installing-and-configuring-typescript/README.md"
+    "build-slides:01": "marp --html 01-*/README.md",
+    "build-slides:02": "marp --html 02-*/README.md"
   },
   "keywords": [],
   "author": "",
