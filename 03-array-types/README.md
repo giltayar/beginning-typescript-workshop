@@ -12,7 +12,7 @@ style: |
 
 # Array types
 
-This lesson discuss typing arrays
+This lesson discusses typing arrays
 
 ---
 
@@ -30,7 +30,6 @@ Now use them:
 
 ```ts
 an[1] + 4;
-const splits: string[] = as[1].split('');
 
 function findNumber(arr: number[], num: number): boolean {
   for (let i = 0; i !== arr.length; i++) {
