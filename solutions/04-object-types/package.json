@@ -6,7 +6,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "node --test --watch dist/exercise/cart-service.test.js",
+    "test": "node --test --watch dist/cart-service.test.js",
     "build": "tsc --watch"
   },
   "keywords": [],

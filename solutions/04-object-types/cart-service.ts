@@ -14,7 +14,7 @@ interface CartItem {
   quantity: number;
 }
 
-const carts = [];
+const carts: Cart[] = [];
 
 app.get("/cart/:cart", (req, res) => {
   const cartId = req.params.cart;
@@ -34,7 +34,7 @@ app.post("/cart/:cart", async (req, res) => {
     return;
   }
 
-  carts.push({ id: req.params.cart });
+  carts.push({ id: req.params.cart, items: [] });
 
   res.send({});
 });
