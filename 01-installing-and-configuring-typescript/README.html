@@ -27,10 +27,15 @@
 }
 ;">
 <h1 id="creating-the-project">Creating the project</h1>
+<ul>
+<li>Create <code>package.json</code>:</li>
+</ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sh">$ npm init -y
 </code></pre>
 <p>This creates a <code>package.json</code></p>
-<p>Add a <code>&quot;type&quot;: &quot;module&quot;</code> in the `package.json to say that it's an ESM package:</p>
+<ul>
+<li>Add a <code>&quot;type&quot;: &quot;module&quot;</code> in the <code>package.json</code> to say that it's an ESM package:</li>
+</ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   ...
   <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.0.0&quot;</span><span class="hljs-punctuation">,</span>
@@ -50,20 +55,24 @@
 }
 ;">
 <h1 id="adding-typescript">Adding TypeScript</h1>
+<ul>
+<li>Add the TypeScript transpiler to the package dependencies:</li>
+</ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sh">$ npm install --save-dev typescript
 </code></pre>
-<p>This adds the TypeScript transpiler to the package dependencies</p>
-<p>Now add the <code>tsconfig.json</code>:</p>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-jsonc">{
-  &quot;compilerOptions&quot;: {
-    &quot;strict&quot;: true, // Show _all_ type errors
-    &quot;module&quot;: &quot;ESNext&quot;, // inpput is ESM
-    &quot;moduleResolution&quot;: &quot;Node&quot;, // you can find modules using the regular Node.js way (`node_modules` etc)
-    &quot;target&quot;: &quot;ESNext&quot;, // output is JavaScript without transpilation to older version
-    &quot;lib&quot;: [&quot;ESNext&quot;], // std library is ESNext
-    &quot;outDir&quot;: &quot;dist&quot;
-  }
-}
+<ul>
+<li>Add the <code>tsconfig.json</code>:</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;compilerOptions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;strict&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// Show _all_ type errors</span>
+    <span class="hljs-attr">&quot;module&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ESNext&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// inpput is ESM</span>
+    <span class="hljs-attr">&quot;moduleResolution&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Node&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// you can find modules using the regular Node.js way (`node_modules` etc)</span>
+    <span class="hljs-attr">&quot;target&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ESNext&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// output is JavaScript without transpilation to older version</span>
+    <span class="hljs-attr">&quot;lib&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;ESNext&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// std library is ESNext</span>
+    <span class="hljs-attr">&quot;outDir&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;dist&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-class="invert" data-theme="default" data-style="section {
@@ -110,7 +119,7 @@
 }
 ;">
 <h1 id="running-the-transpiled-code">Running the transpiled code</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sh">$ node dist/index.js`
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-sh">$ node dist/index.js
 </code></pre>
 <p>Yay!</p>
 <h1 id="finding-errors">Finding errors</h1>
