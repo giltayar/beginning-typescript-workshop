@@ -59,3 +59,10 @@ function add2(a: number, b: number) {
 }
 
 const z = add2(1, 2); // No need to type
+
+
+function add3(a, b): number {
+  return a + b;
+}
+
+const z2 = add3(1, 2); // No need to type

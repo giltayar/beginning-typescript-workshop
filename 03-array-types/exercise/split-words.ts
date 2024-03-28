@@ -19,3 +19,5 @@ function splitWords(sentence) {
 
   return words;
 }
+
+console.log(splitWords('Hello, world!')); // ['Hello,', 'world!']

@@ -91,3 +91,10 @@ const an = [1, '2', true] // (number | string | boolean)[]
 ```
 
 (we'll learn about union types later!)
+
+Type inference does not really work with empty arrays:
+
+```ts
+const an = []; // any[]
+```
+

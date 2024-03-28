@@ -1,9 +1,5 @@
-import {writeFileSync } from 'node:fs';
-
-export function add(num1: number, num2: number) {
-  return num1 + num2;
+export function mult(num1: number, num2: number) {
+  return num1 * num2;
 }
 
-console.log(add(1, 2));
-
-writeFileSync(`'test.txt'`, 'Hello, world!');
+console.log(mult(1, 2));

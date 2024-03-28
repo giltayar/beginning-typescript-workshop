@@ -31,5 +31,6 @@ const yishayahu: Teacher = {name: "Yishayahu Leibowitz", age: Infinity, subject:
 
 const justAPerson: Person = yishayahu; // OK
 
+//@ts-expect-error
 const anotherTeacher: Teacher = carmel; // Error
 

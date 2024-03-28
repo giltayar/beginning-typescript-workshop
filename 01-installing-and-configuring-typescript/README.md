@@ -82,15 +82,11 @@ This adds type checking for all the Node.js API
 Create a file called `index.ts` with this content:
 
 ```ts
-import { writeFileSync } from "node:fs";
-
-export function add(num1: number, num2: number) {
-  return num1 + num2;
+export function mult(num1: number, num2: number) {
+  return num1 * num2;
 }
 
-console.log(add(1, 2));
-
-writeFileSync("test.txt", "Hello, world!");
+console.log(mult(1, 2));
 ```
 
 And run the TypeScript compiler:
@@ -126,7 +122,7 @@ Now if we run `npx tsc` we get an error!
 Let's add a script `build` to the `package.json`:
 
 ```json
-"script": {
+"scripts": {
   "build": "tsc --watch"
 }
 ```

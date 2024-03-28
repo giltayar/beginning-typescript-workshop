@@ -61,4 +61,6 @@ app.post("/cart/:cart/add-item", async (req, res) => {
   res.send({});
 });
 
-app.listen({ port: 3000 });
+await new Promise((resolve, reject) =>
+  app.listen(3000, () => resolve(undefined)).on("error", reject)
+);
